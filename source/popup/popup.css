@@ -1,0 +1,11 @@
+html {
+	width: 500px;
+	height: 250px;
+}
+
+.formLabel { margin-bottom: 5px; width: 100%; }
+.formElement { margin-bottom: 5px; width: 100%; }
+
+#error { display: none; }
+
+.forceBreak { overflow-wrap: anywhere; }

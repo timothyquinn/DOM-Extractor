@@ -1,0 +1,131 @@
+<html>
+<head>
+<link rel='stylesheet' type='text/css' media='screen' href='../lib/bootstrap/5-3-7/bootstrap.min.css' />
+<link rel='stylesheet' type='text/css' media='screen' href='popup.css' />
+</head>
+<body>
+
+<div class='container'>
+
+  <form id='contentForm'>
+
+  <h1 class="mt-2">DOM Extractor</h1>
+
+  <div id='about' class='alert alert-light mt-3 collapse'>
+    Click the capture button to extract data from the given web page. Uses only JavaScript to performs content transformation, language detection, image acquisition and analysis, and detection of tools and techniques impacting privacy and security.
+  </div>
+
+  <button id='captureButton' class="btn btn-primary">Capture</button>
+  <button id='aboutButton' class="btn btn-link">About</button>
+
+  <div id='error' class="alert alert-danger mt-3"></div>
+
+  <div id='contentResults' class='alert alert-light mt-3 collapse'>
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="content-tab" data-bs-toggle="tab" data-bs-target="#content" type="button" role="tab" aria-controls="content" aria-selected="true">Content</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="metadata-tab" data-bs-toggle="tab" data-bs-target="#metadata" type="button" role="tab" aria-controls="metadata" aria-selected="true">Metadata</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="images-tab" data-bs-toggle="tab" data-bs-target="#images" type="button" role="tab" aria-controls="images" aria-selected="true">Images</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="true">Security</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade pt-3 show active" id="content" role="tabpanel" aria-labelledby="content">
+
+        <!-- Title --><div id="titleContainer" class="mb-3">
+          <label for="titleInput" class="form-label">Title</label>
+          <input type='text' id='titleInput' class='form-control' />
+        </div>
+        <!-- Byline --><div id="bylineContainer" class="mb-3">
+          <label for="bylineInput" class="form-label">Byline</label>
+          <input type='text' id='bylineInput' class='form-control' />
+        </div>
+        <!-- Date --><div id="publishedContainer" class="mb-3">
+          <label for="publishedInput" class="form-label">Published</label>
+          <input type='text' id='publishedInput' class='form-control' />
+        </div>
+        <!-- Excerpt --><div id="excerptContainer" class="mb-3">
+          <label for="excerptInput" class="form-label">Excerpt</label>
+          <textarea id='excerptInput' rows='7' class='form-control'></textarea>
+        </div>
+        <!-- Text Content --><div id="textContentContainer" class="mb-3">
+          <label for="textContentInput" class="form-label">Content</label>
+          <textarea id='textContentInput' rows='7' class='form-control'></textarea>
+        </div>
+        <!-- HTML Content --><div id="htmlContentContainer" class="mb-3">
+          <label for="htmlContentInput" class="form-label">HTML</label>
+          <textarea id='htmlContentInput' rows='7' class='form-control'></textarea>
+        </div>
+        <!-- Markdown Content --><div id="markdownContentContainer" class="mb-3">
+          <label for="markdownContentInput" class="form-label">Markdown</label>
+          <textarea id='markdownContentInput' rows='7' class='form-control'></textarea>
+        </div>
+        
+      </div>
+      <div class="tab-pane fade pt-3" id="metadata" role="tabpanel" aria-labelledby="metadata">
+
+        <!-- Domain --><div id="domainContainer" class="mb-3">
+          <label for="domainInput" class="form-label">Domain</label>
+          <input type='text' id='domainInput' class='form-control' />
+        </div>
+        <!-- Website --><div id="websiteContainer" class="mb-3">
+          <label for="websiteInput" class="form-label">Website</label>
+          <input type='text' id='websiteInput' class='form-control' />
+        </div>
+        <!-- Platform --><div id="platformContainer" class="mb-3">
+          <label for="platformInput" class="form-label">Platform</label>
+          <input type='text' id='platformInput' class='form-control' />
+        </div>
+        <!-- Language --><div id="languageContainer" class="mb-3">
+          <label for="languageInput" class="form-label">Language</label>
+          <input type='text' id='languageInput' class='form-control' />
+        </div>
+        
+      </div>
+      <div class="tab-pane fade pt-3" id="images" role="tabpanel" aria-labelledby="images">
+
+        <!-- Images --><div class="mb-3">
+          <label for="imagesInput" class="form-label"></label>
+          <div id='imagesInput'></div>
+        </div>
+        
+      </div>
+      <div class="tab-pane fade pt-3" id="security" role="tabpanel" aria-labelledby="security">
+
+        <!-- Is Iframe --><div id="isIframeContainer" class="mb-3">
+          <label for="isIframeInput" class="form-label">Is a Hidden iFrame</label>
+          <input type='text' id='isIframeInput' class='form-control' />
+        </div>
+        <!-- Iframe URLs --><div id="iframeContainer" class="mb-3">
+          <label for="iframeInput" class="form-label">Embedded External iFrame(s)</label>
+          <div id='iframeInput'></div>
+        </div>
+        <!-- Trackers --><div id="trackersContainer" class="mb-3">
+          <label for="trackersInput" class="form-label">Trackers</label>
+          <div id='trackersInput'></div>
+        </div>
+        
+      </div>
+    </div>
+
+  </div>
+
+  </form>
+
+</div>
+
+<script type='text/javascript' src='../lib/jquery/3-7-1/jquery.min.js'></script>
+<script type='text/javascript' src='../lib/bootstrap/5-3-7/bootstrap.bundle.min.js'></script>
+<script type='text/javascript' src='../lib/bootstrap/5-3-7/bootstrap_config.js'></script>
+<script type='text/javascript' src='../lib/exif-reader/3-0/exif-reader.js'></script>
+<script src='popup.js'></script>
+<script src='display.js'></script>
+</body>
+</html>

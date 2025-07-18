@@ -1,0 +1,40 @@
+{
+	"name": "DOM Extractor",
+	"description": "Parses DOM to create structured content for exfilration and analysis",
+	"version": "1.0",
+	"manifest_version": 3,
+	"action": {
+		"default_popup": "popup/popup.html",
+		"default_icon": "images/dom-128.png"
+	},
+  "icons": {
+    "16": "images/dom-16.png",
+    "48": "images/dom-48.png",
+    "128": "images/dom-128.png"
+  },
+  "permissions": [
+		"tabs",
+		"activeTab",
+    "scripting"
+	],
+	"background": {
+		"service_worker": "background.js",
+    "type": "module"
+	},
+	"content_scripts": [{
+		"matches": ["<all_urls>"],
+		"js": [
+			"content_scripts/content.js",
+			"content_scripts/extractor.js",
+			"data/languages.js",
+			"data/platforms.js",
+			"data/domains.js",
+			"data/trackers.js",
+			"lib/DOMPurify/3-2-6/purify.min.js",
+			"lib/readability/0-6-0/Readability.js",
+			"lib/turndown/7-2-0/turndown.js",
+			"lib/efficient_language_detector/1-0-1/eld.M60.min.js"
+		],
+		"run_at": "document_end"
+	}]
+}

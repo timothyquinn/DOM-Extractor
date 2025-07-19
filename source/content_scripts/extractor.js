@@ -41,6 +41,16 @@
       const urlObject = new URL(results.url);
       results.domain = urlObject.hostname.replace('www.', '');
 
+    // domain flags
+      results.domainWarnings = [];
+      if (results.domain.indexOf('-') !== -1) {
+        results.domainWarnings.push("Although not all hyphenated domains are fake domains, domains with hyphens are significantly more likely to be inauthentic.");
+      }
+
+      if (/^[^0-9]*[01][^0-9]*$/.test(results.domain)) {
+        results.domainWarnings.push("The domain contains either a 0 or a 1, which can indicate a fake domain attempting to substitute an O or an I.");
+      } 
+
 		// get site
 			results.website = article.siteName;
       if (!results.website) {

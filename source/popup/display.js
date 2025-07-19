@@ -37,6 +37,19 @@
         trackersInput.innerHTML += "</ul>\n";
       }
 
+    // domain warnings
+      const domainWarningsInput = document.getElementById('domainWarningsInput');
+      if (!results.domainWarnings || !results.domainWarnings.length) {
+        document.getElementById('domainWarningsContainer').style.display = 'none';
+      }
+      else {
+        domainWarningsInput.innerHTML = "<ul>\n";
+        results.domainWarnings.forEach(warning => {
+          domainWarningsInput.innerHTML += "<li>" + warning + "</li>";
+        });
+        domainWarningsInput.innerHTML += "</ul>\n";
+      }
+
     // images
       const imagesInput = document.getElementById('imagesInput');
       if (!results.imageURLs || !results.imageURLs.length) imagesInput.textContent = "None";

@@ -33,7 +33,9 @@
 		// get byline
 			results.byline = article.byline;
 			if (results.byline == 'By') results.byline = '';
-      if (results.byline && results.byline.substring(0,3) == 'By ') results.byline = results.byline.substring(3);
+      if (results.byline && results.byline.substring(0,3) == 'By ') {
+        results.byline = results.byline.substring(3);
+      }
 
 		// get URL
 			results.url = doc.URL;

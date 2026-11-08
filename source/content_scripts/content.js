@@ -1,15 +1,15 @@
  
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
-        if (request.action == "get-content") {
+    if (request.action == "get-content") {
 
-            sendResponse({
-                action: "display-content",
-                content: extractContent()
-            });
+      sendResponse({
+          action: "display-content",
+          content: extractContent()
+      });
 
-            return true;
+      return true;
 
-        }
+    }
 
-    });
+  });
